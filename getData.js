@@ -68,4 +68,4 @@ const getData = () => mongoose.connect('mongodb://localhost/ewt',  {}, (err) => 
 });
 
 
-setInterval(getData, 5000);
+setInterval(getData, 120000);
