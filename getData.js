@@ -6,6 +6,15 @@ const mongoose = require('mongoose');
 const { Log } = require('./db/logModel');
 const regionURLS = require('./constants').regionURLS;
 
+const writeLog = async (id, name, waitTime, currentDate) => {
+  db.ref('logs/' + String(id)).set({
+    name,
+    waitTime,
+    currentDate: String(currentDate)
+  })
+  .catch((err) => console.log("ErOrOroOROR", err));
+}
+
 const scrapePage = async (regionURL) => {
     await new Promise(request(regionURL, (error, response, responseHtml) =>{
     	const $ = cheerio.load(responseHtml);
@@ -66,6 +75,8 @@ const getData = () => mongoose.connect('mongodb://localhost/ewt',  {}, (err) => 
 	// TODO: get the damn promises to work
 	setTimeout(()=> mongoose.disconnect(), 3000)
 });
+
+
 
 
 setInterval(getData, 120000);

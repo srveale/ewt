@@ -12,7 +12,9 @@ const graphTimes = (hospital) => {
 			logs.map(log => {
 				const [hours, minutes] = log.waitTime.split(':');
 				const totalTime = Number(hours) * 60 + Number(minutes);
-				console.log(totalTime + " ");
+				console.log('{');
+				console.log(log.currentDate, totalTime);
+				console.log('}')
 			})
 		})
 		.then(() => {
